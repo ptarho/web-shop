@@ -16,11 +16,15 @@ This project is a simple Product Management System built using React, Redux Tool
   git clone https://github.com/your-username/product-management-system.git
 
 2. **Install the dependencies for front-end and run it**
-  cd web && npm i
-  npm run dev
+  ```
+cd web && npm i
+npm run dev
+```
 
-3. **Install the dependencies for back-end, create .env file as in the .env.example and run the server**
-  cd server && npm i
-  npm run dev
+4. **Install the dependencies for back-end, create .env file as in the .env.example and run the server**
+ ```
+ cd server && npm i
+ npm run dev
+```
 
-4. **Visit a url vite provide you with in a console**
+5. **Visit a url vite provide you with in a console**
