@@ -2,7 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 // import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 import { IProduct } from "../../../../types";
-import { fetchProducts, deleteProduct, createProduct } from "./actions";
+import {
+  fetchProducts,
+  deleteProduct,
+  createProduct,
+  editProduct,
+} from "./actions";
 
 type ProductsState = {
   products: IProduct[];
@@ -27,6 +32,14 @@ export const productsSlice = createSlice({
       })
       .addCase(createProduct.fulfilled, (state, action) => {
         state.products.push(action.payload);
+      })
+      .addCase(editProduct.fulfilled, (state, action) => {
+        state.products = state.products.map((product) => {
+          if (product._id === action.payload._id) {
+            return action.payload;
+          }
+          return product;
+        });
       });
   },
 });

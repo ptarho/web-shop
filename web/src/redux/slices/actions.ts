@@ -25,13 +25,13 @@ export const deleteProduct = createAsyncThunk(
       return data;
     } catch (error) {
       console.error(error);
-      throw new Error('Failed to delete product');
+      throw new Error("Failed to delete product");
     }
   }
 );
 
 export const createProduct = createAsyncThunk(
-  "products/createProducts",
+  "products/createProduct",
   async (productData: IProduct) => {
     try {
       const response = await fetch(`http://localhost:8080/products/`, {
@@ -45,7 +45,37 @@ export const createProduct = createAsyncThunk(
       return responseData as IProduct;
     } catch (error) {
       console.error(error);
-      throw new Error('Failed to create product');
+      throw new Error("Failed to create product");
+    }
+  }
+);
+
+export const editProduct = createAsyncThunk(
+  "products/editProducts",
+  async ({
+    productId,
+    productData,
+  }: {
+    productId: string;
+    productData: IProduct;
+  }) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/products/${productId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(productData),
+        }
+      );
+      const responseData = await response.json();
+      console.log(responseData)
+      return responseData as IProduct;
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to edit product");
     }
   }
 );

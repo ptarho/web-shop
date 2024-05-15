@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Comment from "./comment";
 
 const ProductSchema = new mongoose.Schema({
   imageUrl: String,
@@ -9,7 +10,9 @@ const ProductSchema = new mongoose.Schema({
     height: Number,
   },
   weight: String,
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+  comments: [
+    { type: mongoose.Schema.Types.ObjectId, ref: Comment && "Comment" },
+  ],
 });
 
 export default mongoose.models.Product ||

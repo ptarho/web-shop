@@ -51,3 +51,36 @@ export const deleteProduct = async (
     return res.sendStatus(400);
   }
 };
+
+export const getProductDetails = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const { id } = req.params;
+
+    const product = await Product.findById(id).populate("comments");
+    return res.status(200).json(product).end();
+  } catch (err) {
+    console.error(err);
+    return res.sendStatus(400);
+  }
+};
+
+export const editProduct = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const { id } = req.params;
+    const newProductData = req.body as IProduct;
+    
+    const product = await Product.findByIdAndUpdate(id, newProductData, {
+      new: true,
+    });
+    return res.status(200).json(product).end();
+  } catch (err) {
+    console.error(err);
+    return res.sendStatus(400);
+  }
+};

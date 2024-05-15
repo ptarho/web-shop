@@ -1,4 +1,4 @@
-import { Comment } from "./comment";
+import { IComment } from "./comment";
 
 export type IProduct = {
   _id: string;
@@ -10,5 +10,5 @@ export type IProduct = {
     height: number;
   };
   weight: string;
-  comments: Comment[];
+  comments: IComment[];
 };
